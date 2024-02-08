@@ -1,0 +1,52 @@
+
+# Signed is both negative and positive, while unsigned is only positive numbers.
+INT(11) SIGNED -1212132 - 121212112
+BIGINT 5583475834857334
+
+FLOAT -343.5756
+DOUBLE 4534.54534511513
+
+VARCHAR(10) "Tobias"
+TEXT "ADHASHAOHFJHJfJDNFJjjsdhfjhshahughrghrgaohåa"
+
+DATE 2024-02-08
+DATETIME 2024-02-08 10:47:45
+
+###########################################################################################
+
+# create table creates a table with the given name, in this case it's users.
+CREATE TABLE users (
+
+    # creates a column called id that cant be empty, that also automaticly increases the number by one.
+	id INT(11) NOT NULL AUTO_INCREMENT,
+
+    # creates a column called username that can only be 30 chars long, and the data can't be empty
+    username VARCHAR(30) NOT NULL,
+
+    # creates a column called pws (password) that can max be 255 chars long.
+    pwd VARCHAR(255) NOT NULL,
+
+
+    email VARCHAR(100) NOT NULL,
+
+    # creates a column called created_at. It's datatype is DATETIME meaning it takes both the date and time. In case the website dosen't provide a date, the server adds the current server date time.
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIME,
+
+    # make the id column the primary key, meaning that there cant be two different id's with the same value.
+    PRIMARY KEY(id)
+);
+
+################################################################################################
+
+CREATE TABLE comments(
+	id INT(11) NOT NULL AUTO_INCREMENT,
+    username VARCHAR(30) NOT NULL,
+    comment_text TEXT NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIME,
+    users_id INT(11),
+    PRIMARY KEY (id),
+
+    # Makes a foreign key that relates users_id to id in users. That means that user 1 in the users table, will have 1 as their users_id.
+    # ON DELETE SET NULL, say that in the case that a user comments on something, and then delete their account, their users_id will be null, and comment deleted
+    FOREIGN KEY (users_id) REFERENCES users (id) ON DELETE SET NULL
+);

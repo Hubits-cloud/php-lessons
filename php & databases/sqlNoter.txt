@@ -50,3 +50,28 @@ CREATE TABLE comments(
     # ON DELETE SET NULL, say that in the case that a user comments on something, and then delete their account, their users_id will be null, and comment deleted
     FOREIGN KEY (users_id) REFERENCES users (id) ON DELETE SET NULL
 );
+
+##################################################################################################
+
+
+INSERT INTO users (username, pwd, email) VALUES ('Tobias', 'tobias123', 'johndoe@gmail.com');
+
+INSERT INTO *table (*columns) VALUES (*values);
+
+###################################################################################################
+
+
+# Changes the username and password of users id 2
+UPDATE users SET username = 'basseIsCool', pwd = 'basse456' WHERE id = 2;
+
+DELETE FROM username WHERE id = 2;
+
+INSERT INTO comments (username, comment_text, users_id) VALUES ('Tobias', 'LMAO this is a comment', 4);
+
+SELECT username, email FROM users WHERE id = 3;
+
+SELECT username, comment_text FROM comments WHERE id = 1;
+
+SELECT * FROM users INNER JOIN comments ON users.id = comments.users_id;
+
+SELECT * FROM users LEFT JOIN comments ON users.id = comments.users_id;

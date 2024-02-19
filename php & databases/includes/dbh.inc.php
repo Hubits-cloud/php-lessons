@@ -12,8 +12,12 @@ try {
     # makes a var containing the PDO class that takes the above globals as arguments
     $pdo = new PDO($dsn, $dbusername, $dbpassword);
 
-    #
+    # pdo attribute is set to look for errors, and if there is an error, catch it
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    # catches the error message and assigns it to $e
 } catch (PDOException $e) {
+
+    # prints the error
     echo"Connection failed: ". $e->getMessage();
 }

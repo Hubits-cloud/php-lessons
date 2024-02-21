@@ -1,7 +1,7 @@
 <?php 
 
 # Checks whether or not the server has recieved a post method.
-if ($_SERVER["REQEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     # looks for an object named username and assigns it's value to $username
     $username = $_POST["username"];
@@ -11,24 +11,31 @@ if ($_SERVER["REQEST_METHOD"] == "POST") {
     try {
         require_once "dbh.inc.php";
 
-        # NAMED QUERY
+        # NAMED PARAMETERS
 
         $query = "INSERT INTO users (username, pwd, email) VALUES (:username, :pwd, :email);";
 
         $stmt = $pdo->prepare($query);
 
-        $stmt->execute([$username, $pwd, $email]);
+        # binds the var to it's given position in the query
+        $stmt->bindParam(":username", $username);
+        $stmt->bindParam(":pwd", $pwd);
+        $stmt->bindParam(":email", $email);
+
+        $stmt->execute();
 
         $pdo = null;
 
         $stmt = null;
+
         header("Location: ../index.php");
+        
         die();
 
 
-        # UNNAMED QUERY
+        # POSTIONAL PARAMETERS
         # makes a var name query containing sql code as a string, since we're using unnamed query, the values are "?"
-        /*$query = "INSERT INTO users (username, pwd, email) VALUES (?, ?, ?);";
+        /* $query = "INSERT INTO users (username, pwd, email) VALUES (?, ?, ?);";
 
         # makes a var named stmt, that contains query that has been prepared for sql execution
         $stmt = $pdo->prepare($query);
@@ -47,7 +54,7 @@ if ($_SERVER["REQEST_METHOD"] == "POST") {
         header("Location: ../index.php");
 
         # does the same as exit. It's advised to use die instead of exit when exiting a section that connects to other things via db or server.
-        die();*/
+        die(); */
 
         # cathces the error. Look at dbh.inc.php for specifics
     } catch (PDOException $e) {

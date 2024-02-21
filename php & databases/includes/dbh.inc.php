@@ -9,10 +9,10 @@ $dbusername = "root";
 $dbpassword = "";
 
 try {
-    # makes a var containing the PDO class that takes the above globals as arguments
+    # makes the pdo connection an object to allow us to refer to it easily.
     $pdo = new PDO($dsn, $dbusername, $dbpassword);
 
-    # pdo attribute is set to look for errors, and if there is an error, catch it
+    # Allows us to set/change attributes of the object. In this case attr-errmode and errmode_exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     # catches the error message and assigns it to $e

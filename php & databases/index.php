@@ -30,7 +30,7 @@ declare(strict_types=1);
             </div>
             
             <div class="admin-link">
-                Search <a href="search.php">Klik her</a>
+                Search <a href="searcher.php">Klik her</a>
             </div>
 
         </form>

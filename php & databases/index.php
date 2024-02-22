@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+include_once "config.php";
 session_start();
 
 # $_session creates a var with the name, in this came username, working as the identifier
@@ -45,6 +46,10 @@ session_destroy();
             
             <div class="admin-link">
                 Search <a href="searcher.php">Klik her</a>
+            </div>
+
+            <div class="admin-link">
+                Session security <a href="session.php">Klik her</a>
             </div>
 
         </form>

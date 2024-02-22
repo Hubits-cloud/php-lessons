@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+include_once "config.php";
 
 # Checks whether or not the server has recieved a post method.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

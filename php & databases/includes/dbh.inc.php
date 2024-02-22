@@ -1,4 +1,5 @@
 <?php 
+include_once "config.php";
 # makes a var with host name and db name
 $dsn = "mysql:host=localhost;dbname=myfirstdatabase";
 

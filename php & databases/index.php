@@ -1,5 +1,19 @@
 <?php
 declare(strict_types=1);
+session_start();
+
+# $_session creates a var with the name, in this came username, working as the identifier
+# echo $_SESSION["username"] would print root
+$_SESSION["username"] = "root";
+
+# frees the specified session variable
+unset($_SESSION["username"]);
+
+# frees all the session vairables
+session_unset();
+
+# destroys all session data, but not the cookie id.
+session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="en">

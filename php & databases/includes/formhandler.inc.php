@@ -18,9 +18,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt = $pdo->prepare($query);
 
+        $options = [
+            'cost' => 12
+        ];
+        
+        # password_hash will hash the password with the given incryption. In this cas bcrypt. NOTE that password_default gets updated by the php devs.
+        $hashedPwd = password_hash($pwd, PASSWORD_BCRYPT, $options);
+
         # binds the var to it's given position in the query
         $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":pwd", $pwd);
+        $stmt->bindParam(":pwd", $hashedPwd);
         $stmt->bindParam(":email", $email);
 
         $stmt->execute();

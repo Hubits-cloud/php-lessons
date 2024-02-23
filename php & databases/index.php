@@ -1,20 +1,6 @@
 <?php
 declare(strict_types=1);
 include_once "config.php";
-session_start();
-
-# $_session creates a var with the name, in this came username, working as the identifier
-# echo $_SESSION["username"] would print root
-$_SESSION["username"] = "root";
-
-# frees the specified session variable
-unset($_SESSION["username"]);
-
-# frees all the session vairables
-session_unset();
-
-# destroys all session data, but not the cookie id.
-session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +36,9 @@ session_destroy();
 
             <div class="admin-link">
                 Session security <a href="session.php">Klik her</a>
+            </div>
+            <div class="admin-link">
+                Sign up <a href="signup.php">Klik her</a>
             </div>
 
         </form>

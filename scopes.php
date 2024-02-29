@@ -29,6 +29,7 @@ declare(strict_types=1);
     echo myFunction();
 
     echo "<br>";
+
     # normally when a function has been passed, all the data from the vars get reset, but if you declare them as static then they get shared across all functions of the same name and saves the previous data
     function myFunction2(){
         static $staticVar = "0";
@@ -41,6 +42,7 @@ declare(strict_types=1);
     echo myFunction2();
 
     echo "<br>";
+    
     # this is a class scope, all variables and functions within this class, can't be used outside of this class
     class myClass {
         public $classVar = "Hello, World!";
